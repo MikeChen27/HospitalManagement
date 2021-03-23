@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理界面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% load static %}
+    <script type="text/javascript" src="{% static "js/shop.js" %}"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>管理员界面</h2>
+        <br/>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="tabbable" id="tabs-200351">
+				<ul class="nav nav-tabs">
+					<li>
+						 <a href="#panel-200936" data-toggle="tab">数据管理</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-200936">
+						<br/>
+                    <!--查询-->
+                    <div id="searchBoxs">  <!-- action="/gouserinfo.do" -->
+
+                            <br/><form method="post" name="searchForms">
+                            城市名:<input type="text" name="shopName">
+
+                            <input type="hidden" name="currentPage" value="1"/>  <!--hidden为不可见-->
+                            <input type="hidden" name="pageSize" value="16"/>
+                            <input type="button" value="查询" onclick="getShopData(1, 16, 'search', 0)">
+
+                             <input type="button" value="添加" onclick="insert()" data-toggle="modal" data-target="#myModal">
+
+                        </form>
+                    </div>
+
+                    <script type="text/html" id="theTemplate">
+
+{#                    <!-- 按钮触发模态框 -->#}
+{#                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">#}
+{#                        开始演示模态框#}
+{#{                   </button>#}
+{#                    <!-- 模态框（Modal）-->#}
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">
+                                    </button>
+                                    <h2 class="modal-title" id="myModalLabel">
+                                        请插入职位信息
+                                    </h2>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="orderCon" style="text-align:center">
+                                        职位名：&nbsp;&nbsp;<input type="text" name="jobposition" value="" /><br/><br/>
+                                        月薪：&nbsp;&nbsp;<input type="text" name="jobmoney" value="" /><br/><br/>
+                                        城市：&nbsp;&nbsp;<input type="text" name="jobcity" value="" /><br/><br/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="orderSubmit" onclick="submits()" data-dismiss="modal">
+                                        添加
+                                    </button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                </script>
+                        <div id="model">
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">
+                                    </button>
+                                    <h2 class="modal-title" id="myModalLabel">
+                                        请插入职位信息
+                                    </h2>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="orderCon" style="text-align:center">
+                                        职位名：&nbsp;&nbsp;<input type="text" name="jobposition" value="" /><br/><br/>
+                                        月薪：&nbsp;&nbsp;<input type="text" name="jobmoney" value="" /><br/><br/>
+                                        城市：&nbsp;&nbsp;<input type="text" name="jobcity" value="" /><br/><br/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="orderSubmit" onclick="submits()" data-dismiss="modal">
+                                        添加
+                                    </button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                        </div>
+
+                    <!--动态生成数据库中商品信息的表格-->
+                        <table class="dataTables" align="center" style="width: 100%">
+
+                            <thead>
+                                <tr>
+                                    <th align="center">
+                                        <input type="button" value="全选"/>
+                                        <input type="button" value="反选"/>
+                                    </th>
+                                    <th>职位编号</th>
+                                    <th>职位名</th>
+                                    <th>月薪</th>
+                                    <th>城市</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody id="shopDataBody">
+{#                            {% for shop in shopList %}#}
+{#                               <tr id="list-lines{{ shop.shopId }}" >#}
+{#                                      <td><input type="checkboxs" name="shopId" value="{{ shop.shopId }}"/></td>#}
+{#                                      <td name="shopId{{ shop.shopId }}">{{ shop.shopId }}</td>#}
+{#                                      <td name="shopName{{ shop.shopId }}">{{ shop.shopName }}</td>#}
+{#                                      <td name="shopPrice{{ shop.shopId }}">{{ shop.shopPrice }}</td>#}
+{#                                      <td name="shopNum{{ shop.shopId }}">{{ shop.shopNum }}</td>#}
+{#                                      <td name="shopClassfiy{{ shop.shopId }}">{{ shop.shopClassfiy }}</td>#}
+{#                                      <td name="shopImgUrl{{ shop.shopId }}">{{ shop.shopImgUrl }}</td>#}
+{#                                      <td>#}
+{#                                          <a onclick="getShopData(1, 16, 'del', 0)">删除</a>&nbsp;&nbsp;#}
+{#                                          <a id="xg" onclick="submitModifyShop({{ shop.shopId }})">修改</a>&nbsp;&nbsp;#}
+{#                                          <a id="wc" onclick="submitModifyShops({{ shop.shopId }})">完成</a>#}
+{#                                      </td>#}
+{#                                  </tr>#}
+{#                              {% endfor %}#}
+
+                            </tbody>
+                        </table>
+
+                    {#   第二块结尾                 #}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script crossorigin="anonymous" integrity="sha384-mlceH9HlqLp7GMKHrj5Ara1+LvdTZVMx4S1U43/NxCvAkzIo8WJ0FE7duLel3wVo" src="https://lib.baomitu.com/jquery/3.4.1/jquery.js"></script>
+    <script src="/static/js/add.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark w-100">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="#">
+          <i class="fa d-inline fa-lg fa-circle"></i>
+          <b> DATABASE</b>
+        </a>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">JoinUs</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh=450,600/sign=f0819b86f8deb48ffb3ca9dac52f161f/0d338744ebf81a4c5c74ed2edc2a6059242da696.jpg" width="30" height="30" class="d-inline-block align-top" alt=""></div>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 text-center" style="background-image: url(https://static.pingendo.com/cover-bubble-dark.svg); background-position: right bottom;  background-size: cover; background-repeat: repeat; background-attachment: fixed;" >
+    <div class="container">
+      <div class="row" style="">
+        <div class="bg-white p-4 mx-auto mx-md-0 col-7 col-lg-12" style="">
+          <h2>增加新处方信息</h2>
+          <p class="mb-4">Enter the information to add</p>
+          <form class="">
+            <div class="form-group"> <label>subject_id</label> <input type="text" class="form-control" placeholder="subject_id" id="sjid"> </div>
+            <div class="form-group"> <label>hadm_id</label><input type="text" class="form-control" placeholder="hadm_id" id="hid"> </div>
+            <div class="form-group"> <label>icustay_id</label> <input type="text" class="form-control" placeholder="icustay_id" id="iid"> </div>
+            <div class="form-group"> <label>startdate</label> <input type="text" class="form-control" placeholder="startdate" id="sd"> </div>
+            <div class="form-group"> <label>enddate</label> <input type="text" class="form-control" placeholder="enddate" id="ed"> </div>
+            <div class="form-group"> <label>drug_type</label> <input type="text" class="form-control" placeholder="drug_type" id="dt"> </div>
+              <div class="form-group"> <label>drug</label> <input type="text" class="form-control" placeholder="drug" id="dr"> </div>
+            <div class="form-group"> <label>drug_name_poe</label> <input type="text" class="form-control" placeholder="drug_name_poe" id="dnp"> </div>
+              <div class="form-group"> <label>drug_name_generic</label> <input type="text" class="form-control" placeholder="drug_name_generic" id="dng"> </div>
+            <div class="form-group"> <label>formulary_drug_cd</label> <input type="text" class="form-control" placeholder="formulary_drug_cd" id="fdc"> </div>
+            <div class="form-group"> <label>gsn</label> <input type="text" class="form-control" placeholder="gsn" id="gsn"> </div>
+            <div class="form-group"> <label>ndc</label> <input type="text" class="form-control" placeholder="ndc" id="ndc"> </div>
+            <div class="form-group"> <label>prod_strength</label> <input type="text" class="form-control" placeholder="prod_strength" id="ps"> </div>
+            <div class="form-group"> <label>dose_val_rx</label> <input type="text" class="form-control" placeholder="dose_val_rx" id="dvr"> </div>
+            <div class="form-group"> <label>dose_unit_rx</label> <input type="text" class="form-control" placeholder="dose_unit_rx" id="dur"> </div>
+              <div class="form-group"> <label>form_val_disp</label> <input type="text" class="form-control" placeholder="form_val_disp" id="fvd"> </div>
+            <div class="form-group"> <label>form_unit_disp</label> <input type="text" class="form-control" placeholder="form_unit_disp" id="fud"> </div>
+            <div class="form-group"> <label>route</label> <input type="text" class="form-control" placeholder="route" id="rt"> </div>
+            <button  class="btn btn-primary mx-3" id="add_pre">Submit</button>
+            <div class="btn-group">
+              <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> Add Other</button>
+              <div class="dropdown-menu"><a class="dropdown-item" href="#" id="h">Home</a>
+              <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="jp_adm">admission</button>
+                <button class="dropdown-item" id="jp_cpt">cpt</button>
+                <button class="dropdown-item" id="jp_cg">caregiver</button>
+                <button class="dropdown-item" id="jp_dt">datatimeevent</button>
+                <button class="dropdown-item" id="jp_lab">labevent</button>
+                  <button class="dropdown-item" id="jp_pat">patient</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
